@@ -40,7 +40,7 @@ function register_cpt_save_data_mail() {
     );
 
     if ( function_exists( 'register_cpt_wideo' ) ) {
-       $showinmenu = 'edit.php?post_type=wideo-contacts';
+       $showinmenu = 'edit.php?post_type=mail-contacts';
     } else {
         $showinmenu = true;
     }
@@ -67,13 +67,13 @@ function register_cpt_save_data_mail() {
     ), 
   );
 
-  register_post_type( 'wideo-contacts', $args );
+  register_post_type( 'mail-contacts', $args );
 }
 
 add_filter( 'post_row_actions', 'remove_row_actions', 10, 1 );
 function remove_row_actions( $actions )
 {
-    if( get_post_type() === 'wideo-contacts' )
+    if( get_post_type() === 'mail-contacts' )
         unset( $actions['edit'] );
         unset( $actions['view'] );
         unset( $actions['trash'] );
@@ -84,9 +84,9 @@ function remove_row_actions( $actions )
 function disable_new_posts_contacts() {
   // Hide sidebar link
   global $submenu;
-  unset($submenu['edit.php?post_type=wideo-contacts'][10]);
+  unset($submenu['edit.php?post_type=mail-contacts'][10]);
   // Hide link on listing page
-  if (isset($_GET['post_type']) && $_GET['post_type'] == 'wideo-contacts') {
+  if (isset($_GET['post_type']) && $_GET['post_type'] == 'mail-contacts') {
       echo '<style type="text/css">
       #favorite-actions, .add-new-h2, .tablenav { display:none; }
       </style>';
@@ -94,7 +94,7 @@ function disable_new_posts_contacts() {
 }
 
 add_action('admin_menu', 'disable_new_posts_contacts');
-add_filter('bulk_actions-edit-wideo-contacts', '__return_empty_array');
+add_filter('bulk_actions-edit-mail-contacts', '__return_empty_array');
 
 /*
  * Aggiungo colonne nella lista delle candidature
@@ -108,7 +108,7 @@ function wideo_set_custom_edit_contacts_columns($columns) {
 
   return $columns;
 }
-add_filter( 'manage_wideo-contacts_posts_columns', 'wideo_set_custom_edit_contacts_columns' );
+add_filter( 'manage_mail-contacts_posts_columns', 'wideo_set_custom_edit_contacts_columns' );
 
 
 
@@ -121,7 +121,7 @@ add_filter( 'manage_wideo-contacts_posts_columns', 'wideo_set_custom_edit_contac
     	case 'wideo_cv' : echo '<a href="'.get_post_meta( $post_id, 'cv', true ).'">Scarica cv</a>'; break;
     }
 }
-add_action( 'manage_wideo-contacts_posts_custom_column' , 'wideo_columns_contacts', 10, 2 );
+add_action( 'manage_mail-contacts_posts_custom_column' , 'wideo_columns_contacts', 10, 2 );
 
 // make columns sortable
 function wideo_sortable_contacts( $columns ) {
@@ -133,7 +133,7 @@ function wideo_sortable_contacts( $columns ) {
 
     return $columns;
 }
-add_filter( 'manage_edit-wideo-contacts_sortable_columns', 'wideo_sortable_contacts' );
+add_filter( 'manage_edit-mail-contacts_sortable_columns', 'wideo_sortable_contacts' );
 
 
 
