@@ -1,7 +1,7 @@
 # WIDEO MAILER SAVE DATA FORM
-plugin per salvare i dati del mailer wideo-mailer
+plugin per salvare i dati del mailer wp-mailer
 
-1. Viene creato un cpt wideo-contacts al suo interno verranno salvati tutti i dati inviati dal mailer
+1. Viene creato un cpt mail-contacts al suo interno verranno salvati tutti i dati inviati dal mailer
 2. viene generata una cartella negli uploads contacts-cv 
 3. bisonga create tutti i campi acf necessari da salvare 
 4. collegarli nel file save-data-mail.php nella funzione updateCPTFieldsContact
